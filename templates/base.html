@@ -37,14 +37,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 
 <body>
-<div class="header wow fadeInUpBig" data-wow-delay="0.4s">
-    <div class="container">
-        <div class="header_top">
-        {% block title1 %}
-        {% endblock title1 %}
-        </div>
-    </div>
-</div>
+{% block title1 %}
+
+{% endblock title1 %}
 <div class="header-home">
     <div class="fixed-header">
         <div class="logo">
@@ -58,9 +53,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul>
                 <li class="active"><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
             </ul>
             <!-- script-nav -->
             <script>

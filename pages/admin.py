@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Services, Human, ServicesImage, HumanImage
+from .models import Services, Human, ServicesImage, HumanImage, About
 
 
 # Register your models here.
@@ -29,3 +29,10 @@ class HumanAdmin(admin.ModelAdmin):
     list_display_links = ("pk", "title")
     preserve_filters = {"slug": ("title",)}
     inlines = [HumanImageInline]
+
+
+@admin.register(About)
+class AboutAdmin(admin.ModelAdmin):
+    list_display = ("pk", "descr", "slug")
+    list_display_links = ("pk",)
+    preserve_filters = {"slug": ("descr",)}

@@ -61,3 +61,21 @@ class Human(models.Model):
 class HumanImage(models.Model):
     photo = models.ImageField(verbose_name="Фото", upload_to="humans/", blank=True, null=True)
     humans = models.ForeignKey(Human, on_delete=models.CASCADE)
+
+
+class About(models.Model):
+    descr = models.TextField(verbose_name="Описание описания сайта")
+    slug = models.SlugField(blank=True, null=True, unique=True)
+
+    def __str__(self):
+        return self.descr
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.descr)
+        return super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Описание сайта"
+        verbose_name_plural = "Описании сайта"
+

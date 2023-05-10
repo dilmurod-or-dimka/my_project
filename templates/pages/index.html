@@ -2,14 +2,20 @@
 {% load static %}
 
 {% block title %}
-Главная страница
+Home
 {% endblock title %}
 
 {% block title1 %}
-<h1>There are many variations of passages of Lorem Ipsum available</h1>
-<h2>It is a long established fact that a reader will be distracted by the readable content of a page when
-    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-    distribution</h2>
+<div class="header wow fadeInUpBig" data-wow-delay="0.4s">
+    <div class="container">
+        <div class="header_top">
+            <h1>There are many variations of passages of Lorem Ipsum available</h1>
+            <h2>It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+            distribution</h2>
+        </div>
+    </div>
+</div>
 {% endblock title1 %}
 
 {% block content %}
@@ -76,7 +82,7 @@
             <div class="desc">
                 <h4>{{ service.title }}</h4>
                 <p>{{ service.descr }}</p>
-                <div class="more"><a href="#"><img src="{% static 'images/more.png' %}" alt=""></a></div>
+                <div class="more"><a href="{% url 'services' %}"><img src="{% static 'images/more.png' %}" alt=""></a></div>
             </div>
         </div>
         {% endfor %}
