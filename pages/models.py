@@ -1,8 +1,10 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
 
 
 # Create your models here.
+
 
 class Services(models.Model):
     title = models.CharField(verbose_name="Название услуги", max_length=150, unique=True)
@@ -79,3 +81,33 @@ class About(models.Model):
         verbose_name = "Описание сайта"
         verbose_name_plural = "Описании сайта"
 
+
+class Blog(models.Model):
+    title = models.CharField(verbose_name="Название блога", max_length=150, unique=True)
+    descr = models.TextField(verbose_name="Описание блога")
+    slug = models.SlugField(blank=True, null=True, unique=True)
+    created_at = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=None, null=True)
+
+    def __str__(self):
+        return self.descr
+
+    def get_photo_blog(self):
+        photo = self.blogimage_set.all().first()
+        if photo is not None:
+            return photo.photo.url
+        return "https://images.satu.kz/126101312_w640_h640_razdel-v-razrabotketovary.jpg"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+            return super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Блог"
+        verbose_name_plural = "Блоги"
+
+
+class BlogImage(models.Model):
+    photo = models.ImageField(verbose_name="Фото", upload_to="blogs/", blank=True, null=True)
+    humans = models.ForeignKey(Blog, on_delete=models.CASCADE)

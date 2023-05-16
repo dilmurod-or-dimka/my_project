@@ -28,7 +28,7 @@ Home
                         <div class="service-box hexagon">
                             <figure class="icon"><img src="{% static 'images/icon_1.png' %}" alt=""/></figure>
                             <div class="service-box_body">
-                                <div class="btn-align"><a href="#" class="btn btn-inverse btn-normal btn-primary " target="_self">Lorem Ipsum</a></div>
+                                <div class="btn-align"><a href="{% url 'home' %}" class="btn btn-inverse btn-normal btn-primary " target="_self">Home</a></div>
                             </div>
                         </div>
                     </li>
@@ -36,7 +36,7 @@ Home
                         <div class="service-box hexagon">
                             <figure class="icon"><img src="{% static 'images/icon_2.png' %}" alt=""/></figure>
                             <div class="service-box_body">
-                                <div class="btn-align"><a href="#" class="btn btn-inverse btn-normal btn-primary " target="_self">consuetudium</a></div>
+                                <div class="btn-align"><a href="{% url 'services' %}" class="btn btn-inverse btn-normal btn-primary " target="_self">Services</a></div>
                             </div>
                         </div>
                     </li>
@@ -44,7 +44,7 @@ Home
                         <div class="service-box hexagon">
                             <figure class="icon"><img src="{% static 'images/icon_3.png' %}" alt=""/></figure>
                             <div class="service-box_body">
-                                <div class="btn-align"><a href="#" class="btn btn-inverse btn-normal btn-primary " target="_self">mutationem</a></div>
+                                <div class="btn-align"><a href="{% url 'contact' %}" class="btn btn-inverse btn-normal btn-primary " target="_self">Contact</a></div>
                             </div>
                         </div>
                     </li>
@@ -56,7 +56,7 @@ Home
                         <div class="service-box hexagon">
                             <figure class="icon"><img src="{% static 'images/icon_4.png' %}" alt=""/></figure>
                             <div class="service-box_body">
-                                <div class="btn-align"><a href="#" class="btn btn-inverse btn-normal btn-primary " target="_self">dynamicus</a></div>
+                                <div class="btn-align"><a href="{% url 'blog' %}" class="btn btn-inverse btn-normal btn-primary " target="_self">Blog</a></div>
                             </div>
                         </div>
                     </li>
@@ -64,7 +64,7 @@ Home
                         <div class="service-box hexagon">
                             <figure class="icon"><img src="{% static 'images/icon_5.png' %}" alt=""/></figure>
                             <div class="service-box_body">
-                                <div class="btn-align"><a href="#" class="btn btn-inverse btn-normal btn-primary " target="_self">processus</a></div>
+                                <div class="btn-align"><a href="{% url 'about' %}" class="btn btn-inverse btn-normal btn-primary " target="_self">About</a></div>
                             </div>
                         </div>
                     </li>
@@ -81,7 +81,7 @@ Home
             <img src="{{ service.get_photo_service }}" class="img-responsive" alt=""/>
             <div class="desc">
                 <h4>{{ service.title }}</h4>
-                <p>{{ service.descr }}</p>
+                <p>{{ service.descr|truncatechars:90 }}</p>
                 <div class="more"><a href="{% url 'services' %}"><img src="{% static 'images/more.png' %}" alt=""></a></div>
             </div>
         </div>
@@ -94,7 +94,7 @@ Home
         <h3 class="head_2 wow rollIn" data-wow-delay="0.4s">Welcome to our team</h3>
         <div class="img-wrapper wow slideInLeft" data-wow-delay="0.4s">
             {% for human in humans %}
-            <a href="#"><img src="{{ human.get_photo_human }}" class="img-responsive" alt=""/></a>
+            <a href="{% url 'about' %}"><img src="{{ human.get_photo_human }}" class="img-responsive" alt=""/></a>
             {% endfor %}
         </div>
         <blockquote class="blockquote1">
@@ -103,7 +103,7 @@ Home
                 Dignissimos ducimus qui blanditiis praesentium voluptatum corrupti quos dolores et quas molestias
                 excepturi sint occaecati cupiditate nonrofficia deserunt mollitia animi id est.
             </div>
-            <span class="author wow bounce" data-wow-delay="0.4s"><a href="#">Dolor Smith, (trainer)</a></span>
+            <span class="author wow bounce" data-wow-delay="0.4s"><a href="{% url 'contact' %}">Dolor Smith, (trainer)</a></span>
         </blockquote>
     </div>
 </div>

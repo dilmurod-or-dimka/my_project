@@ -6,7 +6,7 @@ About
 {% endblock title %}
 
 {% block title1 %}
-<div class="header_about"> </div>
+<div class="header_about"></div>
 {% endblock title1 %}
 
 {% block content %}
@@ -16,7 +16,8 @@ About
         <div class="box_1">
             <h3>Who we are</h3>
         </div>
-        <div class="col-md-12 about_banner"><img src="{% static 'images/about.jpg' %}" class="img-responsive" alt=""/></div>
+        <div class="col-md-12 about_banner"><img src="{% static 'images/about.jpg' %}" class="img-responsive" alt=""/>
+        </div>
         <div class="box_20">
             {% for about in abouts %}
             <div class="col-sm-6 box_3">
@@ -33,12 +34,10 @@ About
         <div class="about-grids">
             {% for human in humans %}
             <div class="col-sm-3 about-grid margin-bottom-3%">
-                <a href="{% static 'images/pic8.jpg' %}" title="name" rel="title2">
-                    <div class="view view-first">
-                        <img src="{{ human.get_photo_human }}" class="img-responsive" alt=""/>
-                    </div>
-                </a>
-                <h4><a href="#">{{ human.title }}</a></h4>
+                <div class="view view-first">
+                    <img src="{{ human.get_photo_human }}" class="img-responsive" alt=""/>
+                </div>
+                <h4><p>{{ human.title }}</p></h4>
                 <p>{{ human.descr }}</p>
             </div>
             {% endfor %}
@@ -105,3 +104,4 @@ About
     </div>
 </div>
 {% endblock content %}
+

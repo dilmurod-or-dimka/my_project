@@ -51,11 +51,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="top-nav">
             <span class="menu"> </span>
             <ul>
-                <li class="active"><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'services' %}">Services</a></li>
-                <li><a href="{% url 'blog' %}">Blog</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
+                <li class="{% if 'about' in request.path %}active{% endif %}"><a href="{% url 'about' %}">About</a></li>
+                <li class="{% if 'services' in request.path %}active{% endif %}"><a href="{% url 'services' %}">Services</a></li>
+                <li class="{% if 'blog' in request.path %}active{% endif %}"><a href="{% url 'blog' %}">Blog</a></li>
+                <li class="{% if 'contact' in request.path %}active{% endif %}"><a href="{% url 'contact' %}">Contact</a></li>
+<!--                <li class="{% if 'contact' in request.path %}active{% endif %}"><a href="{#}">Login</a></li>-->
             </ul>
             <!-- script-nav -->
             <script>

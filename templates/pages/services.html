@@ -21,7 +21,7 @@ Services
                             </div>
 							</a>
 							<h3><a href="#">{{ service.title }}</a></h3>
-							<p class="service_desc">{{ service.descr }}</p>
+							<p class="service_desc">{{ service.descr|truncatechars:70 }}</p>
 						</div>
 				   		{% endfor %}
 				        <div class="clearfix"> </div>
