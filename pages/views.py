@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
-from .models import Human, Services, About, Blog
+from .models import Human, Services, About, Blog, Comment
+from .forms import CommentForm
 from django.core.paginator import Paginator
 
 
@@ -49,14 +50,35 @@ def contact_view(request):
     return render(request, "pages/contact.html")
 
 
+def blog_detail_view(request, slug):
+    blog = Blog.objects.get(slug=slug)
+    comments = blog.comments.filter(blog=blog)
+
+    if request.method == "POST":
+        form = CommentForm(data=request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.author = request.user
+            form.blog = blog
+            form.save()
+            return render("blog_detail", blog.slug)
+
+    else:
+        form = CommentForm()
+
+    context = {
+        "blog": blog,
+        "form": form,
+        "comments": comments,
+    }
+    return render(request, "pages/blog_detail.html", context)
 
 
 # TODO:
+#  создать детальную cтраницу для блока
 #  создать регестрацию
 #  сделать что-то с контактом
-#  создать детальную cтраницу для блока
+
+# Сделано:
 #  создать модельки для блока
-#  создать детальную чтраницу для service
-#  что-то придумать с Advantegrs в about, и создать модельки для Advantegrs
-#  добавить поле для комментария в home
-#  Сдлать укоротитель текста дял сервисов
+#  Сдлать укоротитель текста для сервисов

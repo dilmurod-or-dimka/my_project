@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 # Create your models here.
@@ -92,6 +93,9 @@ class Blog(models.Model):
     def __str__(self):
         return self.descr
 
+    def get_absolute_url(self):
+        return reverse("blog_detail", kwargs={"slug": self.slug})
+
     def get_photo_blog(self):
         photo = self.blogimage_set.all().first()
         if photo is not None:
@@ -111,3 +115,10 @@ class Blog(models.Model):
 class BlogImage(models.Model):
     photo = models.ImageField(verbose_name="Фото", upload_to="blogs/", blank=True, null=True)
     humans = models.ForeignKey(Blog, on_delete=models.CASCADE)
+
+
+class Comment(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="comments")
+    created_at = models.DateTimeField(auto_now_add=True)
+    content = models.TextField(verbose_name="Comment")

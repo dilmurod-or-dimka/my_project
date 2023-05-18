@@ -34,6 +34,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	new WOW().init();
 
     </script>
+    {% block style %}
+    {% endblock style %}
 </head>
 
 <body>
@@ -56,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="{% if 'services' in request.path %}active{% endif %}"><a href="{% url 'services' %}">Services</a></li>
                 <li class="{% if 'blog' in request.path %}active{% endif %}"><a href="{% url 'blog' %}">Blog</a></li>
                 <li class="{% if 'contact' in request.path %}active{% endif %}"><a href="{% url 'contact' %}">Contact</a></li>
-<!--                <li class="{% if 'contact' in request.path %}active{% endif %}"><a href="{#}">Login</a></li>-->
+                <li class="{% if 'login' in request.path %}active{% endif %}"><a href="{% url 'login' %}">Login</a></li>
             </ul>
             <!-- script-nav -->
             <script>
@@ -114,6 +116,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 {% block content %}
 
 {% endblock content %}
+
+{% if 'registration' or 'login' in request.path %}
+{% else %}
 <div class="footer wow fadeInRight" data-wow-delay="0.4s">
     <div class="container">
         <div class="footer_top">
@@ -159,9 +164,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
-<div class="copy">
-    <p>Copyright &copy; 2015 quality . All Rights Reserved . Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
-    </p>
-</div>
+{% endif %}
 </body>
 </html>

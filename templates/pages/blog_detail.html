@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Service
+{% endblock title %}
+
+{% block title1 %}
+<div class="header_about"></div>
+{% endblock title1 %}
+
+{% block content %}
+<div class="grid_4">
+    <div class="container">
+        <h1 class="blog_head">Blog</h1>
+        <div class="blog_grid">
+            <div class="blog_box">
+                <img src="{{ blog.get_photo_blog }}" class="img-responsive" alt=""/>
+                <h3>{{ blog.title }}</h3>
+                <div class="links">
+                    <ul>
+                        <li><i class="fa blog-icon fa-calendar"> </i><span>{{ blog.created_at }}</span></li>
+                        <li><i class="fa blog-icon fa-user"> </i><span>{{ blog.author }}</span></li>
+                        <li><i class="fa blog-icon fa-comment"> </i><span>No comments</span></li>
+                    </ul>
+                </div>
+                <p>{{ blog.descr }}</p>
+            </div>
+        </div>
+        <div class="comment">
+            <h2>Comments</h2>
+            {% for comment in comments %}
+            <ul class="comment-list">
+                <li>
+                    <div class="desc1">
+                        <div class="extra">
+                            <time pubdate="" datetime="2014-03-30T14:47:59">
+                                Submitted by {{ comment.user }} on {{ comment.created_at }}
+                            </time>
+                        </div>
+                        <p>{{ comment.content }}</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+            {% empty %}
+            <h3>No comments...</h3>
+            {% endfor %}
+        </div>
+        <div class="comments-area">
+            <h3>Add New Comment</h3>
+            {% if request.user.is_authenticated %}
+            <form>
+                {{ form }}
+                <label class="btn1 btn2 btn-8 btn-8c"><input type="submit" value="Submit Comment"></label>
+            </form>
+            {% else %}
+            <p>Only registered users can leave comments</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
