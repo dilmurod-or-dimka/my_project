@@ -15,6 +15,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="{% static 'application/x-javascript' %}">
     addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 
+
     </script>
     <link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css'/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -32,6 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="{% static 'css/animate.css' %}" rel='stylesheet' type='text/css'/>
     <script>
 	new WOW().init();
+
 
     </script>
     {% block style %}
@@ -55,9 +57,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul>
                 <li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
                 <li class="{% if 'about' in request.path %}active{% endif %}"><a href="{% url 'about' %}">About</a></li>
-                <li class="{% if 'services' in request.path %}active{% endif %}"><a href="{% url 'services' %}">Services</a></li>
+                <li class="{% if 'services' in request.path %}active{% endif %}"><a
+                        href="{% url 'services' %}">Services</a></li>
                 <li class="{% if 'blog' in request.path %}active{% endif %}"><a href="{% url 'blog' %}">Blog</a></li>
-                <li class="{% if 'contact' in request.path %}active{% endif %}"><a href="{% url 'contact' %}">Contact</a></li>
+                <li class="{% if 'contact' in request.path %}active{% endif %}"><a
+                        href="{% url 'contact' %}">Contact</a></li>
                 {% if not request.user.is_authenticated %}
                 <li class="{% if 'login' in request.path %}active{% endif %}"><a href="{% url 'login' %}">Login</a></li>
                 {% else %}
@@ -70,6 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$(".top-nav ul").slideToggle(500, function(){
 				});
 			});
+
 
 
 
@@ -89,6 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					$(this).parent().siblings().removeClass("active");
 				});
 			});
+
 
 
 
@@ -114,6 +120,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
 </script>
 <!-- /script-for sticky-nav -->
 <!--//header-->
@@ -121,47 +128,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 {% endblock content %}
 
-{% if 'registration' or 'login' in request.path %}
+{% if 'registration' in request.path or 'login' in request.path %}
 {% else %}
 <div class="footer wow fadeInRight" data-wow-delay="0.4s">
     <div class="container">
         <div class="footer_top">
+
+            {% if 'blog' in request.path %}
+            {% else %}
             <div class="col-sm-3">
                 <ul class="list1">
                     <h3>Browse</h3>
-                    <li><a href="#">Industrial Resources</a></li>
-                    <li><a href="#">Jobs</a></li>
-                    <li><a href="#">Buildings</a></li>
-                    <li><a href="#">Contacts</a></li>
+                    {% for blog in blogs %}
+                    <li><a href="{{ blog.get_absolute_url }}">{{ blog.title|truncatechars:20 }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
+            {% endif %}
+
+            {% if 'services' in request.path %}
+            {% else %}
             <div class="col-sm-3">
                 <ul class="list1">
                     <h3>Services</h3>
-                    <li><a href="#">Communications</a></li>
-                    <li><a href="#">Electrical</a></li>
-                    <li><a href="#">Industrial</a></li>
-                    <li><a href="#">Mechanical</a></li>
+                    {% for service in services %}
+                    <li><a href="{% url 'services' %}">{{ service.title }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
+            {% endif %}
+
             <div class="col-sm-3">
                 <ul class="list1">
                     <h3>Navigation</h3>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Apply</a></li>
-                    <li><a href="#">Terms and Conditions</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'contact' %}">Apply</a></li>
+                    <li><a href="{% url 'services' %}">Terms and Conditions</a></li>
+                    {% if request.user.is_authenticated %}
+                    {% else %}
+                    <li><a href="{% url 'registration' %}">Register</a></li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="col-sm-3">
                 <ul class="socials">
-                    <li><a href="#"><i class="fa fb fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa tw fa-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/dilmurod.burhonov.94"><i class="fa fb fa-facebook"></i></a></li>
                 </ul>
                 <ul class="list2">
-                    <li><strong class="phone">+0018 58287 58</strong><br><small>Mon - Fri / 9.00AM - 06.00PM</small>
+                    <li><strong class="phone">+998(90) 129-15-06</strong><br><small>Mon - Fri / 9.00AM - 06.00PM</small>
                     </li>
-                    <li>Questions? <a href="malito:mail@demolink.org">mail(at)quality.com</a></li>
+                    <li>Questions? <a href="mailto:dilmurod1506@gmail.com">dilmurod1506@gmail.com</a></li>
                 </ul>
             </div>
             <div class="clearfix"></div>
