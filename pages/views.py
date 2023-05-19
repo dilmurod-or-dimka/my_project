@@ -1,7 +1,9 @@
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect, HttpResponse
 from .models import Human, Services, About, Blog, Comment
-from .forms import CommentForm
+from .forms import CommentForm, ContactForm
 from django.core.paginator import Paginator
+from django.core.mail import send_mail, BadHeaderError
 
 
 # Create your views here.
@@ -57,18 +59,39 @@ def blog_view(request):
 
 
 def contact_view(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = "Test message"
+            body = {
+                "first_name": form.cleaned_data["first_name"],
+                "last_name": form.cleaned_data["last_name"],
+                "email": form.cleaned_data["email_address"],
+                "message": form.cleaned_data["message"],
+            }
+            message = "\n".join(body.values())
+            try:
+                send_mail(subject, message,
+                          "qualityprofessional15@gmail.com",
+                          ["dilmurod1506@gmail.com"])
+            except BadHeaderError:
+                return HttpResponse("Invalid header found")
+            return redirect("home")
+    form = ContactForm()
+
     services = Services.objects.all()[:3]
     blogs = Blog.objects.all()[:3]
     context = {
         "services": services,
-        "blogs": blogs
+        "blogs": blogs,
+        "form": form,
     }
     return render(request, "pages/contact.html", context)
 
 
 def blog_detail_view(request, slug):
     blog = Blog.objects.get(slug=slug)
-    services = Services.objects.all()
+    services = Services.objects.all()[:3]
     comments = blog.comments.all()
 
     if request.method == "POST":
@@ -91,6 +114,15 @@ def blog_detail_view(request, slug):
     }
     return render(request, "pages/blog_detail.html", context)
 
+
+def del_comment(request, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    if request.user == comment.author or request.user.is_superuser:
+        blog_id = comment.blog.slug
+        comment.delete()
+        return redirect("blog_detail", blog_id)
+    else:
+        raise PermissionDenied
 
 # TODO:
 #  сделать что-то с контактом

@@ -10,4 +10,6 @@ urlpatterns = [
     path("contact/", views.contact_view, name="contact"),
     path("blog/<slug:slug>/", views.blog_detail_view, name="blog_detail"),
 
+    path("comments/<int:comment_id>/delete/", views.del_comment, name="del_comment"),
+
 ]

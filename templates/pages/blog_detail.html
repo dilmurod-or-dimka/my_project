@@ -38,6 +38,9 @@ Service
                             </time>
                         </div>
                         <p>{{ comment.content }}</p>
+                        {% if comment.author == request.user or request.user.is_superuser %}
+                        <div class="reply"><a class="comment-reply-link" href="{% url 'del_comment' comment.pk %}">Delete</a></div>
+                        {% endif %}
                     </div>
                     <div class="clearfix"></div>
                 </li>

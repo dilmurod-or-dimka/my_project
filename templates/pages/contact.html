@@ -24,25 +24,29 @@ Contact
 				</div>
 				<div class="col-md-8 contact_right">
 					<h3>Catch me</h3>
-					<form>
+					<form method="post">
 						<div class="text">
 							<div class="text-fild">
-								<span>Name:</span>
-								<input type="text" class="text" value="Your Name here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Name here';}">
+								<span>Firstname:</span>
+								{% csrf_token %}
+								{{ form.first_name }}
 							</div>
 							<div class="text-fild">
-								<span>Email:</span>
-								<input type="text" class="text" value="Your Email here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Email here';}">
+								<span>Lastname:</span>
+								{% csrf_token %}
+								{{ form.last_name }}
 							</div>
 							<div class="clearfix"> </div>
 						</div>
 						<div class="msg-fild">
-								<span>Subject:</span>
-								<input type="text" class="text" value="Your Subject here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Subject here';}">
+								<span>Email:</span>
+								{% csrf_token %}
+								{{ form.email_address }}
 						</div>
 						<div class="message-fild">
 								<span>Message:</span>
-								<textarea> </textarea>
+								{% csrf_token %}
+								{{ form.message }}
 						</div>
 						<label class="btn1 btn2 btn-8 btn-8c"><input type="submit" value="Send"></label>
 					</form>
