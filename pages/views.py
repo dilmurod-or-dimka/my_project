@@ -71,9 +71,7 @@ def contact_view(request):
             }
             message = "\n".join(body.values())
             try:
-                send_mail(subject, message,
-                          "qualityprofessional15@gmail.com",
-                          ["dilmurod1506@gmail.com"])
+                send_mail(subject, message, "qualityprofessional15@gmail.com", ["dilmurod1506@gmail.com"])
             except BadHeaderError:
                 return HttpResponse("Invalid header found")
             return redirect("home")
@@ -125,10 +123,10 @@ def del_comment(request, comment_id):
         raise PermissionDenied
 
 # TODO:
-#  сделать что-то с контактом
 
 # Сделано:
+#  сделать что-то с контактом
 #  создать детальную cтраницу для блока
 #  создать регестрацию
 #  создать модельки для блока
-#  Сдлать укоротитель текста для сервисов
+#  Сдлать укоротитель текста для блока

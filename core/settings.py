@@ -43,7 +43,12 @@ INSTALLED_APPS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
+EMAIL_HOST ="imap.gmail.com"
+EMAIL_HOST_USER = "dilmurod1506@gamil.com"
+EMAIL_HOST_PASSWORD = "qua12lity34"
+EMAIL_PORT = 993
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = "qualityprofessional15@gmail.com"
 
 
 MIDDLEWARE = [
