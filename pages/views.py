@@ -47,6 +47,7 @@ def service_view(request):
 
 def blog_view(request):
     blogs = Blog.objects.all()
+
     services = Services.objects.all()[:3]
     paginator = Paginator(blogs, 4)
     page = request.GET.get("page")
