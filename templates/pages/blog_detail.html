@@ -20,7 +20,11 @@ Service
                     <ul>
                         <li><i class="fa blog-icon fa-calendar"> </i><span>{{ blog.created_at }}</span></li>
                         <li><i class="fa blog-icon fa-user"> </i><span>{{ blog.author }}</span></li>
+                        {% if not comments_count %}
                         <li><i class="fa blog-icon fa-comment"> </i><span>No comments</span></li>
+                        {% else %}
+                        <li><i class="fa blog-icon fa-comment"> </i><span>{{ comments_count }}</span></li>
+                        {% endif %}
                     </ul>
                 </div>
                 <p>{{ blog.descr }}</p>

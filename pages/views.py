@@ -108,6 +108,7 @@ def blog_detail_view(request, slug):
         "blog": blog,
         "form": form,
         "comments": comments,
+        "comments_count": comments.count(),
         "services": services,
     }
     return render(request, "pages/blog_detail.html", context)
