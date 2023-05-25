@@ -29,8 +29,9 @@ ALLOWED_HOSTS = [
     "dilmurod1506.pythonanywhere.com",
     "127.0.0.1",
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Application definition
 
