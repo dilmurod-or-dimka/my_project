@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     "dilmurod1506.pythonanywhere.com",
     "127.0.0.1",
 ]
+STATIC_ROOT = "static/"
 
 
 # Application definition
