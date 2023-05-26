@@ -1,11 +1,12 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-Registration
-{% endblock title %}
-
-{% block style %}
-<style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration</title>
+    <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap');
 
         body {
@@ -33,7 +34,6 @@ Registration
         }
 
         input[type=text],
-        input[type=file],
         input[type=email],
         input[type=password] {
             width: 100%;
@@ -90,13 +90,9 @@ Registration
             opacity: 1;
         }
     </style>
-{% endblock style %}
+</head>
 
-{% block title1 %}
-<div class="header_about"></div>
-{% endblock title1 %}
-
-{% block content %}
+<body>
 <form method="POST" enctype="multipart/form-data" action="">
     {% csrf_token %}
     <div class="container">
@@ -117,4 +113,6 @@ Registration
         </div>
     </div>
 </form>
-{% endblock content %}
+</body>
+
+</html>
