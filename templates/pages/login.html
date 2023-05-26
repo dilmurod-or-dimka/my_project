@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registration</title>
-    <style>
+{% block title %}
+Login
+{% endblock title %}
+
+{% block style %}
+<style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap');
 
         body {
@@ -90,10 +89,16 @@
         button:hover {
             opacity: 1;
         }
-    </style>
-</head>
 
-<body>
+
+</style>
+{% endblock style %}
+
+{% block title1 %}
+<div class="header_about"></div>
+{% endblock title1 %}
+
+{% block content %}
 <form method="post" action="">
     {% csrf_token %}
     <div class="container">
@@ -106,6 +111,4 @@
         </div>
     </div>
 </form>
-</body>
-
-</html>
+{% endblock content%}

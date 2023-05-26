@@ -36,6 +36,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
     </script>
+    {% block style %}
+    {% endblock style %}
 </head>
 
 <body>
@@ -126,6 +128,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 {% endblock content %}
 
+{% if 'registration' in request.path or 'login' in request.path %}
+{% else %}
 <div class="footer wow fadeInRight" data-wow-delay="0.4s">
     <div class="container">
         <div class="footer_top">
@@ -180,5 +184,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
+{% endif %}
 </body>
 </html>
